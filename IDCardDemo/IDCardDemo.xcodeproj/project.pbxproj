@@ -1,0 +1,595 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		88491758278BF55300777E1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88491757278BF55300777E1A /* AppDelegate.swift */; };
+		8849175A278BF55300777E1A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88491759278BF55300777E1A /* SceneDelegate.swift */; };
+		8849175C278BF55300777E1A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8849175B278BF55300777E1A /* ViewController.swift */; };
+		88491761278BF55500777E1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88491760278BF55500777E1A /* Assets.xcassets */; };
+		88491764278BF55500777E1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88491762278BF55500777E1A /* LaunchScreen.storyboard */; };
+		8849176F278BF55500777E1A /* IDCardDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8849176E278BF55500777E1A /* IDCardDemoTests.swift */; };
+		88491779278BF55500777E1A /* IDCardDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88491778278BF55500777E1A /* IDCardDemoUITests.swift */; };
+		8849177B278BF55500777E1A /* IDCardDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8849177A278BF55500777E1A /* IDCardDemoUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8849176B278BF55500777E1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8849174C278BF55300777E1A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88491753278BF55300777E1A;
+			remoteInfo = IDCardDemo;
+		};
+		88491775278BF55500777E1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8849174C278BF55300777E1A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88491753278BF55300777E1A;
+			remoteInfo = IDCardDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		88491754278BF55300777E1A /* IDCardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDCardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88491757278BF55300777E1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		88491759278BF55300777E1A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8849175B278BF55300777E1A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		88491760278BF55500777E1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		88491763278BF55500777E1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		88491765278BF55500777E1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8849176A278BF55500777E1A /* IDCardDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IDCardDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8849176E278BF55500777E1A /* IDCardDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDCardDemoTests.swift; sourceTree = "<group>"; };
+		88491774278BF55500777E1A /* IDCardDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IDCardDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88491778278BF55500777E1A /* IDCardDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDCardDemoUITests.swift; sourceTree = "<group>"; };
+		8849177A278BF55500777E1A /* IDCardDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDCardDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		88491751278BF55300777E1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88491767278BF55500777E1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88491771278BF55500777E1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8849174B278BF55300777E1A = {
+			isa = PBXGroup;
+			children = (
+				88491756278BF55300777E1A /* IDCardDemo */,
+				8849176D278BF55500777E1A /* IDCardDemoTests */,
+				88491777278BF55500777E1A /* IDCardDemoUITests */,
+				88491755278BF55300777E1A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		88491755278BF55300777E1A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88491754278BF55300777E1A /* IDCardDemo.app */,
+				8849176A278BF55500777E1A /* IDCardDemoTests.xctest */,
+				88491774278BF55500777E1A /* IDCardDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88491756278BF55300777E1A /* IDCardDemo */ = {
+			isa = PBXGroup;
+			children = (
+				88491757278BF55300777E1A /* AppDelegate.swift */,
+				88491759278BF55300777E1A /* SceneDelegate.swift */,
+				8849175B278BF55300777E1A /* ViewController.swift */,
+				88491760278BF55500777E1A /* Assets.xcassets */,
+				88491762278BF55500777E1A /* LaunchScreen.storyboard */,
+				88491765278BF55500777E1A /* Info.plist */,
+			);
+			path = IDCardDemo;
+			sourceTree = "<group>";
+		};
+		8849176D278BF55500777E1A /* IDCardDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				8849176E278BF55500777E1A /* IDCardDemoTests.swift */,
+			);
+			path = IDCardDemoTests;
+			sourceTree = "<group>";
+		};
+		88491777278BF55500777E1A /* IDCardDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				88491778278BF55500777E1A /* IDCardDemoUITests.swift */,
+				8849177A278BF55500777E1A /* IDCardDemoUITestsLaunchTests.swift */,
+			);
+			path = IDCardDemoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		88491753278BF55300777E1A /* IDCardDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8849177E278BF55500777E1A /* Build configuration list for PBXNativeTarget "IDCardDemo" */;
+			buildPhases = (
+				88491750278BF55300777E1A /* Sources */,
+				88491751278BF55300777E1A /* Frameworks */,
+				88491752278BF55300777E1A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IDCardDemo;
+			productName = IDCardDemo;
+			productReference = 88491754278BF55300777E1A /* IDCardDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		88491769278BF55500777E1A /* IDCardDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88491781278BF55500777E1A /* Build configuration list for PBXNativeTarget "IDCardDemoTests" */;
+			buildPhases = (
+				88491766278BF55500777E1A /* Sources */,
+				88491767278BF55500777E1A /* Frameworks */,
+				88491768278BF55500777E1A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8849176C278BF55500777E1A /* PBXTargetDependency */,
+			);
+			name = IDCardDemoTests;
+			productName = IDCardDemoTests;
+			productReference = 8849176A278BF55500777E1A /* IDCardDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		88491773278BF55500777E1A /* IDCardDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88491784278BF55500777E1A /* Build configuration list for PBXNativeTarget "IDCardDemoUITests" */;
+			buildPhases = (
+				88491770278BF55500777E1A /* Sources */,
+				88491771278BF55500777E1A /* Frameworks */,
+				88491772278BF55500777E1A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88491776278BF55500777E1A /* PBXTargetDependency */,
+			);
+			name = IDCardDemoUITests;
+			productName = IDCardDemoUITests;
+			productReference = 88491774278BF55500777E1A /* IDCardDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8849174C278BF55300777E1A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					88491753278BF55300777E1A = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					88491769278BF55500777E1A = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 88491753278BF55300777E1A;
+					};
+					88491773278BF55500777E1A = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 88491753278BF55300777E1A;
+					};
+				};
+			};
+			buildConfigurationList = 8849174F278BF55300777E1A /* Build configuration list for PBXProject "IDCardDemo" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8849174B278BF55300777E1A;
+			productRefGroup = 88491755278BF55300777E1A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				88491753278BF55300777E1A /* IDCardDemo */,
+				88491769278BF55500777E1A /* IDCardDemoTests */,
+				88491773278BF55500777E1A /* IDCardDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88491752278BF55300777E1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88491764278BF55500777E1A /* LaunchScreen.storyboard in Resources */,
+				88491761278BF55500777E1A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88491768278BF55500777E1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88491772278BF55500777E1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88491750278BF55300777E1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8849175C278BF55300777E1A /* ViewController.swift in Sources */,
+				88491758278BF55300777E1A /* AppDelegate.swift in Sources */,
+				8849175A278BF55300777E1A /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88491766278BF55500777E1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8849176F278BF55500777E1A /* IDCardDemoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88491770278BF55500777E1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8849177B278BF55500777E1A /* IDCardDemoUITestsLaunchTests.swift in Sources */,
+				88491779278BF55500777E1A /* IDCardDemoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8849176C278BF55500777E1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88491753278BF55300777E1A /* IDCardDemo */;
+			targetProxy = 8849176B278BF55500777E1A /* PBXContainerItemProxy */;
+		};
+		88491776278BF55500777E1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88491753278BF55300777E1A /* IDCardDemo */;
+			targetProxy = 88491775278BF55500777E1A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		88491762278BF55500777E1A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88491763278BF55500777E1A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8849177C278BF55500777E1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8849177D278BF55500777E1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8849177F278BF55500777E1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9GQRR52DYJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IDCardDemo/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sangbong.IDCardDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		88491780278BF55500777E1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9GQRR52DYJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IDCardDemo/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sangbong.IDCardDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		88491782278BF55500777E1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9GQRR52DYJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sangbong.IDCardDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IDCardDemo.app/IDCardDemo";
+			};
+			name = Debug;
+		};
+		88491783278BF55500777E1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9GQRR52DYJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sangbong.IDCardDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IDCardDemo.app/IDCardDemo";
+			};
+			name = Release;
+		};
+		88491785278BF55500777E1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9GQRR52DYJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sangbong.IDCardDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = IDCardDemo;
+			};
+			name = Debug;
+		};
+		88491786278BF55500777E1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9GQRR52DYJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sangbong.IDCardDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = IDCardDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8849174F278BF55300777E1A /* Build configuration list for PBXProject "IDCardDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8849177C278BF55500777E1A /* Debug */,
+				8849177D278BF55500777E1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8849177E278BF55500777E1A /* Build configuration list for PBXNativeTarget "IDCardDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8849177F278BF55500777E1A /* Debug */,
+				88491780278BF55500777E1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88491781278BF55500777E1A /* Build configuration list for PBXNativeTarget "IDCardDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88491782278BF55500777E1A /* Debug */,
+				88491783278BF55500777E1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88491784278BF55500777E1A /* Build configuration list for PBXNativeTarget "IDCardDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88491785278BF55500777E1A /* Debug */,
+				88491786278BF55500777E1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8849174C278BF55300777E1A /* Project object */;
+}
