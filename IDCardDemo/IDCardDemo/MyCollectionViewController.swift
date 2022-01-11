@@ -13,8 +13,6 @@ class MyCollectionViewController: UIViewController {
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 40
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 40)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .clear
         view.showsHorizontalScrollIndicator = false
@@ -39,7 +37,7 @@ class MyCollectionViewController: UIViewController {
         
         collectionView.register(UINib(nibName: "ProfileCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "profileCell")
         collectionView.register(QRCodeCollectionViewCell.self, forCellWithReuseIdentifier: "qrcodeCell")
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(AttendanceCollectionViewCell.self, forCellWithReuseIdentifier: "attendanceCell")
         
         configureCollectionView()
         configureExitBtn()
@@ -88,46 +86,32 @@ extension MyCollectionViewController: UICollectionViewDataSource, UICollectionVi
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCollectionViewCell
             
             cell.profileImage?.image = UIImage(named: "상봉")
-
+            
             return cell
         } else if indexPath.item % 3 == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "qrcodeCell", for: indexPath) as! QRCodeCollectionViewCell
-            cell.imageView.image = UIImage(named: "상봉")
+            cell.titleLabel.text = "출퇴근 체크 QR"
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-            cell.backgroundColor = .green
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "attendanceCell", for: indexPath) as! AttendanceCollectionViewCell
+            
             return cell
         }
         
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return CGSize(width: 15, height: 15)
-//    }
 }
 
 
 extension MyCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width - 80, height: collectionView.frame.height)
+        return CGSize(width: 300 * collectionView.frame.width / 360, height: collectionView.frame.height)
     }
 
-//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//        guard let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-//
-//        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
-//
-//        let estimatedIndex = scrollView.contentOffset.x / cellWidthIncludingSpacing
-//        let index: Int
-//        if velocity.x > 0 {
-//            index = Int(ceil(estimatedIndex))
-//        } else if velocity.x < 0 {
-//            index = Int(floor(estimatedIndex))
-//        } else {
-//            index = Int(round(estimatedIndex))
-//        }
-//
-//        targetContentOffset.pointee = CGPoint(x: CGFloat(index) * cellWidthIncludingSpacing, y: 0)
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat(collectionView.frame.width / 6)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: collectionView.frame.width / 12, bottom: 0, right: collectionView.frame.width / 12)
+    }
 }
