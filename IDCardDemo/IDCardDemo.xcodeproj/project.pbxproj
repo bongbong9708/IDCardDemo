@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8800C942278D025C002D0D44 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8800C941278D025C002D0D44 /* SnapKit */; };
+		8800C944278D03B5002D0D44 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C943278D03B5002D0D44 /* MyCollectionViewController.swift */; };
+		8800C948278D1E18002D0D44 /* QRCodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C947278D1E18002D0D44 /* QRCodeCollectionViewCell.swift */; };
+		8800C94A278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C949278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift */; };
+		8800C951278D3BEC002D0D44 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C94F278D3BEC002D0D44 /* ProfileCollectionViewCell.swift */; };
+		8800C952278D3BEC002D0D44 /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8800C950278D3BEC002D0D44 /* ProfileCollectionViewCell.xib */; };
+		8800C954278D4B5E002D0D44 /* MyScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C953278D4B5E002D0D44 /* MyScrollViewController.swift */; };
 		88491758278BF55300777E1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88491757278BF55300777E1A /* AppDelegate.swift */; };
 		8849175A278BF55300777E1A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88491759278BF55300777E1A /* SceneDelegate.swift */; };
 		8849175C278BF55300777E1A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8849175B278BF55300777E1A /* ViewController.swift */; };
@@ -35,6 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8800C943278D03B5002D0D44 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
+		8800C947278D1E18002D0D44 /* QRCodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeCollectionViewCell.swift; sourceTree = "<group>"; };
+		8800C949278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCollectionViewCell.swift; sourceTree = "<group>"; };
+		8800C94F278D3BEC002D0D44 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		8800C950278D3BEC002D0D44 /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
+		8800C953278D4B5E002D0D44 /* MyScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScrollViewController.swift; sourceTree = "<group>"; };
 		88491754278BF55300777E1A /* IDCardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDCardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88491757278BF55300777E1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88491759278BF55300777E1A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8800C942278D025C002D0D44 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +88,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8800C94E278D1EE3002D0D44 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				8800C94F278D3BEC002D0D44 /* ProfileCollectionViewCell.swift */,
+				8800C950278D3BEC002D0D44 /* ProfileCollectionViewCell.xib */,
+				8800C947278D1E18002D0D44 /* QRCodeCollectionViewCell.swift */,
+				8800C949278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift */,
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
 		8849174B278BF55300777E1A = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +125,9 @@
 				88491757278BF55300777E1A /* AppDelegate.swift */,
 				88491759278BF55300777E1A /* SceneDelegate.swift */,
 				8849175B278BF55300777E1A /* ViewController.swift */,
+				8800C943278D03B5002D0D44 /* MyCollectionViewController.swift */,
+				8800C953278D4B5E002D0D44 /* MyScrollViewController.swift */,
+				8800C94E278D1EE3002D0D44 /* CollectionViewCells */,
 				88491760278BF55500777E1A /* Assets.xcassets */,
 				88491762278BF55500777E1A /* LaunchScreen.storyboard */,
 				88491765278BF55500777E1A /* Info.plist */,
@@ -140,6 +168,9 @@
 			dependencies = (
 			);
 			name = IDCardDemo;
+			packageProductDependencies = (
+				8800C941278D025C002D0D44 /* SnapKit */,
+			);
 			productName = IDCardDemo;
 			productReference = 88491754278BF55300777E1A /* IDCardDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -212,6 +243,9 @@
 				Base,
 			);
 			mainGroup = 8849174B278BF55300777E1A;
+			packageReferences = (
+				8800C940278D025C002D0D44 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 88491755278BF55300777E1A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -230,6 +264,7 @@
 			files = (
 				88491764278BF55500777E1A /* LaunchScreen.storyboard in Resources */,
 				88491761278BF55500777E1A /* Assets.xcassets in Resources */,
+				8800C952278D3BEC002D0D44 /* ProfileCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +289,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8800C948278D1E18002D0D44 /* QRCodeCollectionViewCell.swift in Sources */,
+				8800C944278D03B5002D0D44 /* MyCollectionViewController.swift in Sources */,
+				8800C94A278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift in Sources */,
+				8800C954278D4B5E002D0D44 /* MyScrollViewController.swift in Sources */,
+				8800C951278D3BEC002D0D44 /* ProfileCollectionViewCell.swift in Sources */,
 				8849175C278BF55300777E1A /* ViewController.swift in Sources */,
 				88491758278BF55300777E1A /* AppDelegate.swift in Sources */,
 				8849175A278BF55300777E1A /* SceneDelegate.swift in Sources */,
@@ -590,6 +630,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8800C940278D025C002D0D44 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8800C941278D025C002D0D44 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8800C940278D025C002D0D44 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8849174C278BF55300777E1A /* Project object */;
 }
