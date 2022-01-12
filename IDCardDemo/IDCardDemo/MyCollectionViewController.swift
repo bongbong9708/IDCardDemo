@@ -35,7 +35,7 @@ class MyCollectionViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        collectionView.register(UINib(nibName: "ProfileCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "profileCell")
+        self.collectionView.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: "profileCell")
         collectionView.register(QRCodeCollectionViewCell.self, forCellWithReuseIdentifier: "qrcodeCell")
         collectionView.register(AttendanceCollectionViewCell.self, forCellWithReuseIdentifier: "attendanceCell")
         
@@ -82,21 +82,26 @@ extension MyCollectionViewController: UICollectionViewDataSource, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.item % 3 == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCollectionViewCell
-            
-            cell.profileImage?.image = UIImage(named: "상봉")
-            
-            return cell
-        } else if indexPath.item % 3 == 1 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "qrcodeCell", for: indexPath) as! QRCodeCollectionViewCell
-            cell.titleLabel.text = "출퇴근 체크 QR"
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "attendanceCell", for: indexPath) as! AttendanceCollectionViewCell
-            
-            return cell
-        }
+//        if indexPath.item == 0 {
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCollectionViewCell
+//
+//            cell.titleLabel.text = "전자사원증"
+//
+//            return cell
+//        } else if indexPath.item == 1 {
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "qrcodeCell", for: indexPath) as! QRCodeCollectionViewCell
+//            cell.titleLabel.text = "출퇴근 체크 QR"
+//            return cell
+//        } else {
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "attendanceCell", for: indexPath) as! AttendanceCollectionViewCell
+//
+//            return cell
+//        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCollectionViewCell
+
+        cell.titleLabel.text = "전자사원증"
+
+        return cell
         
     }
 }

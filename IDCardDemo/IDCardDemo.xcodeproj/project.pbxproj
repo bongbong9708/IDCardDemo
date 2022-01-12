@@ -11,8 +11,6 @@
 		8800C944278D03B5002D0D44 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C943278D03B5002D0D44 /* MyCollectionViewController.swift */; };
 		8800C948278D1E18002D0D44 /* QRCodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C947278D1E18002D0D44 /* QRCodeCollectionViewCell.swift */; };
 		8800C94A278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C949278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift */; };
-		8800C951278D3BEC002D0D44 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C94F278D3BEC002D0D44 /* ProfileCollectionViewCell.swift */; };
-		8800C952278D3BEC002D0D44 /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8800C950278D3BEC002D0D44 /* ProfileCollectionViewCell.xib */; };
 		8800C954278D4B5E002D0D44 /* MyScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C953278D4B5E002D0D44 /* MyScrollViewController.swift */; };
 		88491758278BF55300777E1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88491757278BF55300777E1A /* AppDelegate.swift */; };
 		8849175A278BF55300777E1A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88491759278BF55300777E1A /* SceneDelegate.swift */; };
@@ -22,6 +20,7 @@
 		8849176F278BF55500777E1A /* IDCardDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8849176E278BF55500777E1A /* IDCardDemoTests.swift */; };
 		88491779278BF55500777E1A /* IDCardDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88491778278BF55500777E1A /* IDCardDemoUITests.swift */; };
 		8849177B278BF55500777E1A /* IDCardDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8849177A278BF55500777E1A /* IDCardDemoUITestsLaunchTests.swift */; };
+		88CAB3EF278E52A800671BA0 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CAB3EE278E52A800671BA0 /* ProfileCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,8 +44,6 @@
 		8800C943278D03B5002D0D44 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
 		8800C947278D1E18002D0D44 /* QRCodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeCollectionViewCell.swift; sourceTree = "<group>"; };
 		8800C949278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCollectionViewCell.swift; sourceTree = "<group>"; };
-		8800C94F278D3BEC002D0D44 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
-		8800C950278D3BEC002D0D44 /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		8800C953278D4B5E002D0D44 /* MyScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScrollViewController.swift; sourceTree = "<group>"; };
 		88491754278BF55300777E1A /* IDCardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDCardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88491757278BF55300777E1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +57,7 @@
 		88491774278BF55500777E1A /* IDCardDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IDCardDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88491778278BF55500777E1A /* IDCardDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDCardDemoUITests.swift; sourceTree = "<group>"; };
 		8849177A278BF55500777E1A /* IDCardDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDCardDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		88CAB3EE278E52A800671BA0 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +89,7 @@
 		8800C94E278D1EE3002D0D44 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				8800C94F278D3BEC002D0D44 /* ProfileCollectionViewCell.swift */,
-				8800C950278D3BEC002D0D44 /* ProfileCollectionViewCell.xib */,
+				88CAB3EE278E52A800671BA0 /* ProfileCollectionViewCell.swift */,
 				8800C947278D1E18002D0D44 /* QRCodeCollectionViewCell.swift */,
 				8800C949278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift */,
 			);
@@ -264,7 +261,6 @@
 			files = (
 				88491764278BF55500777E1A /* LaunchScreen.storyboard in Resources */,
 				88491761278BF55500777E1A /* Assets.xcassets in Resources */,
-				8800C952278D3BEC002D0D44 /* ProfileCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,9 +287,9 @@
 			files = (
 				8800C948278D1E18002D0D44 /* QRCodeCollectionViewCell.swift in Sources */,
 				8800C944278D03B5002D0D44 /* MyCollectionViewController.swift in Sources */,
+				88CAB3EF278E52A800671BA0 /* ProfileCollectionViewCell.swift in Sources */,
 				8800C94A278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift in Sources */,
 				8800C954278D4B5E002D0D44 /* MyScrollViewController.swift in Sources */,
-				8800C951278D3BEC002D0D44 /* ProfileCollectionViewCell.swift in Sources */,
 				8849175C278BF55300777E1A /* ViewController.swift in Sources */,
 				88491758278BF55300777E1A /* AppDelegate.swift in Sources */,
 				8849175A278BF55300777E1A /* SceneDelegate.swift in Sources */,
