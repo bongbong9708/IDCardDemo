@@ -9,21 +9,14 @@ import UIKit
 
 class ProfileCollectionViewCell: UICollectionViewCell {
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         backgroundColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
         
         configureBaseView()
         configureBaseSubView()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        
-        
-//        configureImageView()
+        configureContentSubView()
     }
     
     required init?(coder: NSCoder) {
@@ -46,6 +39,47 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    let lineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(displayP3Red: 60/255, green: 60/255, blue: 67/255, alpha: 0.06)
+        return view
+    }()
+    
+    let profileImage: UIImageView = {
+        let img = UIImageView()
+        return img
+    }()
+    
+    let teamLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(displayP3Red: 139/255, green: 139/255, blue: 143/255, alpha: 1)
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 14)
+        return label
+    }()
+    
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(displayP3Red: 17/255, green: 17/255, blue: 17/255, alpha: 1)
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 22)
+        return label
+    }()
+    
+    let shortLineLabel: UIView = {
+        let view = UIView()
+        
+        return view
+    }()
+    
+    let proveLabel: UILabel = {
+        let label = UILabel()
+        
+        return label
+    }()
+    
+    
+    
     // MARK: - Constraints
     
     func configureBaseView() {
@@ -53,18 +87,62 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         
         baseView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(contentView.frame.height / 398 * 200)
+            make.height.equalTo(200)
         }
     }
     
     func configureBaseSubView() {
+        // 타이틀 - 전자사원증
         baseView.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(16 * baseView.frame.height / 200)
+            make.top.equalTo(16)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(20 * baseView.frame.height / 200)
+            make.height.equalTo(24)
         }
         
+        // 라인
+        baseView.addSubview(lineView)
+        
+        lineView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(11)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        
+        // 프로필 사진
+        baseView.addSubview(profileImage)
+        
+        profileImage.snp.makeConstraints { make in
+            make.top.equalTo(lineView.snp.bottom).offset(34)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(118)
+            make.height.equalTo(138)
+        }
     }
+    
+    func configureContentSubView() {
+        // 팀라벨
+        contentView.addSubview(teamLabel)
+        
+        teamLabel.snp.makeConstraints { make in
+            make.top.equalTo(profileImage.snp.bottom).offset(16)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(20)
+        }
+        
+        // 이름라벨
+        contentView.addSubview(nameLabel)
+        
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(teamLabel.snp.bottom)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(33)
+        }
+        
+        // 짧은 라인
+        contentView.addSubview(<#T##view: UIView##UIView#>)
+        
+    }
+    
 }

@@ -53,8 +53,8 @@ class MyCollectionViewController: UIViewController {
             make.top.equalToSuperview().offset(172 * view.frame.height / 760)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-(190 * view.frame.height / 760))
-            make.height.equalTo(398 * view.frame.height / 760)
+//            make.bottom.equalToSuperview().offset(-(190 * view.frame.height / 760))
+            make.height.equalTo(406)
         }
     }
     
@@ -82,41 +82,41 @@ extension MyCollectionViewController: UICollectionViewDataSource, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        if indexPath.item == 0 {
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCollectionViewCell
-//
-//            cell.titleLabel.text = "전자사원증"
-//
-//            return cell
-//        } else if indexPath.item == 1 {
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "qrcodeCell", for: indexPath) as! QRCodeCollectionViewCell
-//            cell.titleLabel.text = "출퇴근 체크 QR"
-//            return cell
-//        } else {
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "attendanceCell", for: indexPath) as! AttendanceCollectionViewCell
-//
-//            return cell
-//        }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCollectionViewCell
+        if indexPath.item == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCollectionViewCell
 
-        cell.titleLabel.text = "전자사원증"
+            cell.titleLabel.text = "전자사원증"
+            cell.profileImage.image = UIImage(named: "이상봉")
+            cell.teamLabel.text = "더존비즈온 / 모바일Cell팀"
+            cell.nameLabel.text = "이상봉"
+            
+            return cell
+        } else if indexPath.item == 1 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "qrcodeCell", for: indexPath) as! QRCodeCollectionViewCell
+            
+            cell.titleLabel.text = "출퇴근 체크 QR"
+            cell.explainLabel.text = "근태기에 QR코드를 인식해주세요."
+            
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "attendanceCell", for: indexPath) as! AttendanceCollectionViewCell
 
-        return cell
-        
+            return cell
+        }
     }
 }
 
 
 extension MyCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 300 * collectionView.frame.width / 360, height: collectionView.frame.height)
+        return CGSize(width: 300, height: collectionView.frame.height)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(collectionView.frame.width / 6)
+        return CGFloat(collectionView.frame.width - 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: collectionView.frame.width / 12, bottom: 0, right: collectionView.frame.width / 12)
+        return UIEdgeInsets(top: 0, left: (collectionView.frame.width - 300) / 2, bottom: 0, right: (collectionView.frame.width - 300) / 2)
     }
 }

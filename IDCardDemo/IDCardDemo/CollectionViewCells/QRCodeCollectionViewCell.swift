@@ -17,8 +17,6 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         
         configureBaseView()
         configureBaseSubView()
-        
-//        configureImageView()
     }
     
     required init?(coder: NSCoder) {
@@ -56,6 +54,17 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    let imageBaseView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        view.layer.shadowColor = UIColor.lightGray.cgColor
+        view.layer.masksToBounds = false
+        view.layer.shadowOffset = CGSize(width: 0, height: 4) // 위치조정
+        view.layer.shadowRadius = 5 // 반경
+        view.layer.shadowOpacity = 0.3 // alpha값
+        return view
+    }()
+    
     let imageView: UIImageView = {
         let img = UIImageView()
         img.backgroundColor = .white
@@ -70,22 +79,47 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         
         baseView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(contentView.frame.height / 398 * 200)
-        }
-        
-        baseView.addSubview(titleLabel)
-//        baseView.addSubview(lineView)
-//        baseView.addSubview(explainLabel)
-        
-        titleLabel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(16 * baseView.frame.height / 200)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(20 * baseView.frame.height / 200)
+            make.height.equalTo(200)
         }
     }
     
     func configureBaseSubView() {
+        // 타이틀 라벨
+        baseView.addSubview(titleLabel)
         
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(20)
+        }
+        
+        // 라인뷰
+        baseView.addSubview(lineView)
+        
+        lineView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(11)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        
+        // 근태기 큐알 인식
+        baseView.addSubview(explainLabel)
+        
+        explainLabel.snp.makeConstraints { make in
+            make.top.equalTo(lineView.snp.bottom).offset(34)
+            make.leading.equalToSuperview().offset(53)
+            make.trailing.equalToSuperview().offset(-53)
+            make.height.equalTo(20)
+        }
+        
+        // QR베이스뷰
+        baseView.addSubview(imageBaseView)
+        
+        imageBaseView.snp.makeConstraints { make in
+            make.top.equalTo(explainLabel.snp.bottom).offset(24)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(148)
+        }
     }
     
     func configureImageView() {
