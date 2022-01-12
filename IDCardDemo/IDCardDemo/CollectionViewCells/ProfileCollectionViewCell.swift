@@ -12,7 +12,8 @@ class ProfileCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        // contentView
+        configureContentView()
         
         configureBaseView()
         configureBaseSubView()
@@ -23,8 +24,8 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - View 생성
     
+    // MARK: - View 생성
     let baseView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(displayP3Red: 237/255, green: 241/255, blue: 247/255, alpha: 1)
@@ -33,6 +34,7 @@ class ProfileCollectionViewCell: UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
+        label.text = "전자사원증"
         label.textColor = UIColor(displayP3Red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16)
@@ -62,25 +64,33 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = UIColor(displayP3Red: 17/255, green: 17/255, blue: 17/255, alpha: 1)
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 22)
+        label.font = UIFont.boldSystemFont(ofSize: 22)
         return label
     }()
     
-    let shortLineLabel: UIView = {
+    let shortLineView: UIView = {
         let view = UIView()
-        
+        view.backgroundColor = UIColor(displayP3Red: 77/255, green: 124/255, blue: 254/255, alpha: 1)
         return view
     }()
     
     let proveLabel: UILabel = {
         let label = UILabel()
-        
+        label.text = "상기인은 당사 임직원임을 증명합니다."
+        label.textColor = UIColor(displayP3Red: 139/255, green: 139/255, blue: 143/255, alpha: 1)
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 13)
         return label
     }()
     
     
-    
     // MARK: - Constraints
+    
+    func configureContentView() {
+        backgroundColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        clipsToBounds = true
+        layer.cornerRadius = 8
+    }
     
     func configureBaseView() {
         self.contentView.addSubview(baseView)
@@ -135,14 +145,28 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(nameLabel)
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(teamLabel.snp.bottom)
+            make.top.equalTo(teamLabel.snp.top).offset(20)
             make.centerX.equalToSuperview()
             make.height.equalTo(33)
         }
         
         // 짧은 라인
-        contentView.addSubview(<#T##view: UIView##UIView#>)
+        contentView.addSubview(shortLineView)
         
+        shortLineView.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(15)
+            make.leading.equalToSuperview().offset(135)
+            make.trailing.equalToSuperview().offset(-133)
+            make.height.equalTo(2)
+        }
+        
+        // 임직원 증명 설명 라벨
+        contentView.addSubview(proveLabel)
+        
+        proveLabel.snp.makeConstraints { make in
+            make.top.equalTo(shortLineView.snp.bottom).offset(15)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(19)
+        }
     }
-    
 }

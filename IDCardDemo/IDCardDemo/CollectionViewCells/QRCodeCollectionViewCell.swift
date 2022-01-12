@@ -13,10 +13,11 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        configureContentView()
         
         configureBaseView()
         configureBaseSubView()
+        configureContentSubView()
     }
     
     required init?(coder: NSCoder) {
@@ -34,6 +35,7 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
+        label.text = "출퇴근 체크 QR"
         label.textColor = UIColor(displayP3Red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16)
@@ -48,6 +50,7 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
     
     let explainLabel: UILabel = {
         let label = UILabel()
+        label.text = "근태기에 QR코드를 인식해주세요."
         label.textColor = UIColor(displayP3Red: 99/255, green: 99/255, blue: 105/255, alpha: 1)
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14)
@@ -65,14 +68,57 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    let imageView: UIImageView = {
+    // MARK: - QR코드 임시 (수정예정) 시뮬레이터는 안뜨고 실기기에서는 QR이 생성
+    let QRImage: UIImageView = {
         let img = UIImageView()
-        img.backgroundColor = .white
+        
+        let data = "https://www.naver.com".data(using: String.Encoding.ascii)
+        
+        let filter = CIFilter(name: "CIQRCodeGenerator")
+        filter?.setValue(data, forKey: "inputMessage")
+        let transform = CGAffineTransform(scaleX: 5, y: 5)
+        
+        if let output = filter?.outputImage?.transformed(by: transform) {
+            img.image = UIImage(ciImage: output)
+        }
+        
         return img
+    }()
+    
+    let clockImage: UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "icClockBlSSele")
+        return img
+    }()
+    
+    let remainTimeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "남은시간"
+        label.textColor = UIColor(displayP3Red: 139/255, green: 139/255, blue: 143/255, alpha: 1)
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 13)
+        return label
+    }()
+    
+    
+    let progressView: UIProgressView = {
+        let bar = UIProgressView()
+        bar.progressViewStyle = .default
+        bar.progressTintColor = UIColor(displayP3Red: 77/255, green: 124/255, blue: 254/255, alpha: 1)
+        bar.trackTintColor = UIColor(displayP3Red: 193/255, green: 200/255, blue: 214/255, alpha: 1)
+        
+        bar.progress = 0.5
+        return bar
     }()
     
     
     // MARK: - Constraints
+    
+    func configureContentView() {
+        backgroundColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        clipsToBounds = true
+        layer.cornerRadius = 8
+    }
     
     func configureBaseView() {
         addSubview(baseView)
@@ -120,13 +166,44 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
             make.centerX.equalToSuperview()
             make.width.height.equalTo(148)
         }
+        
+        // QR이미지
+        imageBaseView.addSubview(QRImage)
+        
+        QRImage.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(8)
+        }
     }
     
-    func configureImageView() {
-        baseView.addSubview(imageView)
+    func configureContentSubView() {
         
-        imageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(30)
+        contentView.addSubview(clockImage)
+        
+        clockImage.snp.makeConstraints { make in
+            make.top.equalTo(imageBaseView.snp.bottom).offset(26)
+            make.leading.equalToSuperview().offset(104)
+            make.width.height.equalTo(18)
+        }
+        
+        contentView.addSubview(remainTimeLabel)
+        
+        remainTimeLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageBaseView.snp.bottom).offset(25)
+            make.leading.equalTo(clockImage.snp.trailing).offset(2)
+            make.width.equalTo(48)
+            make.height.equalTo(19)
+        }
+        
+        
+        // 프로그레스뷰
+        contentView.addSubview(progressView)
+        
+        // 임시 지정
+        progressView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.width.equalTo(204)
+            make.height.equalTo(6)
+            make.bottom.equalToSuperview().offset(-70)
         }
     }
     
