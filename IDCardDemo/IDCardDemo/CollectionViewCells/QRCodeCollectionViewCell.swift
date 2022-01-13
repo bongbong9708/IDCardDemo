@@ -18,7 +18,8 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         configureBaseView()
         configureBaseSubView()
         configureContentSubView()
-    
+        configureHiddenView()
+        
         startTimer()
     }
     
@@ -105,13 +106,11 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
     
     let remainTime: UILabel = {
         let label = UILabel()
-//        label.text = "15초"
         label.textColor = UIColor(displayP3Red: 77/255, green: 124/255, blue: 254/255, alpha: 1)
         label.textAlignment = .left
         label.font = UIFont.boldSystemFont(ofSize: 13)
         return label
     }()
-    
     
     let progressView: UIProgressView = {
         let bar = UIProgressView()
@@ -120,6 +119,50 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         bar.trackTintColor = UIColor(displayP3Red: 193/255, green: 200/255, blue: 214/255, alpha: 1)
         bar.progress = 0.0
         return bar
+    }()
+    
+    
+    // MARK: - 숨겨진 view들
+    let hiddenQRView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white .withAlphaComponent(0.9)
+        view.isHidden = true
+        return view
+    }()
+    
+    let hiddenBtn: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .blue
+        button.isHidden = true
+        button.addTarget(self, action: #selector(timerRestart), for: .touchUpInside)
+        return button
+    }()
+    
+    let hiddenText: UILabel = {
+        let label = UILabel()
+        label.text = "재발급"
+        label.textColor = UIColor(displayP3Red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.isHidden = true
+        return label
+    }()
+    
+    let hiddenClockImage: UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "hiddenIcClockBlSSele")
+        img.isHidden = true
+        return img
+    }()
+    
+    let hiddenTimeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "유효시간이 만료되었습니다."
+        label.textColor = UIColor(displayP3Red: 139/255, green: 139/255, blue: 143/255, alpha: 1)
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.isHidden = true
+        return label
     }()
     
     
@@ -229,18 +272,68 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    func configureHiddenView() {
+        // 숨겨진 뷰
+        QRImage.addSubview(hiddenQRView)
+        
+        hiddenQRView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        // 숨겨진 재발급 버튼
+        hiddenQRView.addSubview(hiddenBtn)
+        
+        hiddenBtn.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(32)
+            make.leading.equalToSuperview().offset(46)
+            make.trailing.equalToSuperview().offset(-46)
+        }
+        
+        // 숨겨진 재발급 텍스트
+        hiddenQRView.addSubview(hiddenText)
+        
+        hiddenText.snp.makeConstraints { make in
+            make.top.equalTo(hiddenBtn.snp.bottom).offset(8)
+            make.leading.equalToSuperview().offset(47)
+            make.trailing.equalToSuperview().offset(-47)
+            make.bottom.equalToSuperview().offset(-32)
+        }
+        
+        // 숨겨진 시계
+        contentView.addSubview(hiddenClockImage)
+        
+        hiddenClockImage.snp.makeConstraints { make in
+            make.top.equalTo(imageBaseView.snp.bottom).offset(26)
+            make.leading.equalToSuperview().offset(70)
+            make.width.height.equalTo(18)
+        }
+        
+        // 숨겨진 유효시간 만료라벨
+        contentView.addSubview(hiddenTimeLabel)
+        
+        hiddenTimeLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageBaseView.snp.bottom).offset(25)
+            make.leading.equalTo(hiddenClockImage.snp.trailing).offset(2)
+            make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(19)
+        }
+    }
+    
     // MARK: - 타이머 세팅
     var timer: Timer?
     var timerNum: Int = 0
+    var totalTimerNum: Int = 0
     
     func startTimer() {
         // 기존에 타이머 동작중이면 중지 처리
-//        if timer != nil && timer!.isValid {
-//            timer!.invalidate()
-//        }
+        if timer != nil && timer!.isValid {
+            timer!.invalidate()
+        }
         
         // 타이머 사용값 초기화
-        timerNum = 15
+        timerNum = 2
+        totalTimerNum = timerNum * 3
+        
         // 1초 간격 타이머 시작
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
     }
@@ -250,15 +343,45 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         self.remainTime.text = "\(timerNum)초"
         progressView.setProgress(Float(timerNum), animated: true)
         
-        //timerNum이 0이면(15초 경과) 타이머 종료
+        
+        
+        // timerNum이 0이면(15초 경과) 타이머 종료
         if (timerNum == 0) {
-            timerNum = 15
+            timerNum = 2
+
+            if totalTimerNum == 0 {
+                timer?.invalidate()
+                
+                clockImage.isHidden = true
+                remainTimeLabel.isHidden = true
+                remainTime.isHidden = true
+                
+                hiddenQRView.isHidden = false
+                hiddenBtn.isHidden = false
+                hiddenText.isHidden = false
+                hiddenTimeLabel.isHidden = false
+                hiddenClockImage.isHidden = false
+            }
             
-            //타이머 종료 후 처리...
         }
-     
-        //timerNum -1 감소시키기
-        timerNum-=1
+        
+        // 1초씩 감소시키기
+        timerNum -= 1
+        totalTimerNum -= 1
+    }
+    
+    @objc func timerRestart() {
+        clockImage.isHidden = false
+        remainTimeLabel.isHidden = false
+        remainTime.isHidden = false
+        
+        hiddenQRView.isHidden = true
+        hiddenBtn.isHidden = true
+        hiddenText.isHidden = true
+        hiddenTimeLabel.isHidden = true
+        hiddenClockImage.isHidden = true
+        
+        startTimer()
     }
     
 }
