@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import SnapKit
 
 class QRCodeCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - 초기화
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -18,6 +18,8 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         configureBaseView()
         configureBaseSubView()
         configureContentSubView()
+    
+        startTimer()
     }
     
     required init?(coder: NSCoder) {
@@ -69,18 +71,19 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
     }()
     
     // MARK: - QR코드 임시 (수정예정) 시뮬레이터는 안뜨고 실기기에서는 QR이 생성
+    // 우선 이미지로 해놓고 다른 작업 후 진행예정
     let QRImage: UIImageView = {
         let img = UIImageView()
         
-        let data = "https://www.naver.com".data(using: String.Encoding.ascii)
-        
-        let filter = CIFilter(name: "CIQRCodeGenerator")
-        filter?.setValue(data, forKey: "inputMessage")
-        let transform = CGAffineTransform(scaleX: 5, y: 5)
-        
-        if let output = filter?.outputImage?.transformed(by: transform) {
-            img.image = UIImage(ciImage: output)
-        }
+//        let data = "https://www.naver.com".data(using: String.Encoding.ascii)
+//        
+//        let filter = CIFilter(name: "CIQRCodeGenerator")
+//        filter?.setValue(data, forKey: "inputMessage")
+//        let transform = CGAffineTransform(scaleX: 5, y: 5)
+//        
+//        if let output = filter?.outputImage?.transformed(by: transform) {
+//            img.image = UIImage(ciImage: output)
+//        }
         
         return img
     }()
@@ -100,14 +103,22 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    let remainTime: UILabel = {
+        let label = UILabel()
+//        label.text = "15초"
+        label.textColor = UIColor(displayP3Red: 77/255, green: 124/255, blue: 254/255, alpha: 1)
+        label.textAlignment = .left
+        label.font = UIFont.boldSystemFont(ofSize: 13)
+        return label
+    }()
+    
     
     let progressView: UIProgressView = {
         let bar = UIProgressView()
         bar.progressViewStyle = .default
         bar.progressTintColor = UIColor(displayP3Red: 77/255, green: 124/255, blue: 254/255, alpha: 1)
         bar.trackTintColor = UIColor(displayP3Red: 193/255, green: 200/255, blue: 214/255, alpha: 1)
-        
-        bar.progress = 0.5
+        bar.progress = 0.0
         return bar
     }()
     
@@ -177,6 +188,7 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
     
     func configureContentSubView() {
         
+        // 알람 이미지
         contentView.addSubview(clockImage)
         
         clockImage.snp.makeConstraints { make in
@@ -185,6 +197,7 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
             make.width.height.equalTo(18)
         }
         
+        // 남은 시간
         contentView.addSubview(remainTimeLabel)
         
         remainTimeLabel.snp.makeConstraints { make in
@@ -194,6 +207,15 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(19)
         }
         
+        // 남은시간 - 숫자
+        contentView.addSubview(remainTime)
+        
+        remainTime.snp.makeConstraints { make in
+            make.top.equalTo(imageBaseView.snp.bottom).offset(25)
+            make.leading.equalTo(remainTimeLabel.snp.trailing).offset(4)
+            make.width.equalTo(30)
+            make.height.equalTo(19)
+        }
         
         // 프로그레스뷰
         contentView.addSubview(progressView)
@@ -207,8 +229,36 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - 타이머 세팅
+    var timer: Timer?
+    var timerNum: Int = 0
     
+    func startTimer() {
+        // 기존에 타이머 동작중이면 중지 처리
+//        if timer != nil && timer!.isValid {
+//            timer!.invalidate()
+//        }
+        
+        // 타이머 사용값 초기화
+        timerNum = 15
+        // 1초 간격 타이머 시작
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
+    }
     
-    
+    @objc func timerCallback() {
+        // 15초 ~ 1초 까지 timeBtn의 타이틀 변경
+        self.remainTime.text = "\(timerNum)초"
+        progressView.setProgress(Float(timerNum), animated: true)
+        
+        //timerNum이 0이면(15초 경과) 타이머 종료
+        if (timerNum == 0) {
+            timerNum = 15
+            
+            //타이머 종료 후 처리...
+        }
+     
+        //timerNum -1 감소시키기
+        timerNum-=1
+    }
     
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class ProfileCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - 초기화
     override init(frame: CGRect) {
         super.init(frame: frame)
         

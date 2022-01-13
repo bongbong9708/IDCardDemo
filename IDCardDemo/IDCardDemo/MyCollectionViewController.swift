@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class MyCollectionViewController: UIViewController {
     
@@ -62,18 +61,22 @@ class MyCollectionViewController: UIViewController {
         configureCollectionView()
         configureExitBtn()
         configurePageControll()
+    
+//        DispatchQueue.main.async {
+//            self.collectionView.scrollToItem(at: IndexPath(row: 2, section: 0), at: .right, animated: true)
+//        }
+    }
         
+    
+    // MARK: - viewWillAppear
+    // 현재는 QR코드 사진 데이터를 넣어서 무리없이 2번째 화면으로 나타나는데 QR코드를 생성하게되면 생성 시간 때문인지 딜레이되는 시간이 있어서 1번째 화면 이후 이동을 하게됍니다.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.collectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .top, animated: false)
+        }
+            
     }
-    
-    
-    // MARK: - viewDidAppear
-    override func viewDidAppear(_ animated: Bool) {
-    // 뷰가 생성된 직후 indexPath.item == 1, QR코드 화면으로 이동
-        super.viewDidAppear(animated)
-        let indexPath: IndexPath = IndexPath(row: 1, section: 0)
-        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-    }
-    
     
     // MARK: - 서브뷰 추가 및 레이아웃 설정
     func configureCollectionView() {
@@ -121,6 +124,7 @@ class MyCollectionViewController: UIViewController {
 }
 
 
+// MARK: - 컬렉션뷰 DataSource, Delegate
 extension MyCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
@@ -138,27 +142,40 @@ extension MyCollectionViewController: UICollectionViewDataSource, UICollectionVi
         } else if indexPath.item == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "qrcodeCell", for: indexPath) as! QRCodeCollectionViewCell
             
-//            cell.QRImage.image = UIImage(named: "QR코드")
-            
+            cell.QRImage.image = UIImage(named: "QR코드")
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "attendanceCell", for: indexPath) as! AttendanceCollectionViewCell
 
             cell.titleLabel.text = "나의 근무시간 관리"
             
+            // present 메서드를 사용하기 위해 속성 설정
+            cell.viewController = self
+            
             return cell
         }
     }
     
-//    coll
-//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        <#code#>
+//    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        let indexPath: IndexPath = IndexPath(row: 1, section: 0)
+//        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
 //    }
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        let indexPath: IndexPath = IndexPath(row: 1, section: 0)
+//        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
 //    }
 }
 
+extension MyCollectionViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+                let indexPath: IndexPath = IndexPath(row: 1, section: 0)
+                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        
+    }
+}
 
+
+// MARK: - 컬렉션뷰 DelegateFlowLayout
 extension MyCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 300, height: collectionView.frame.height)

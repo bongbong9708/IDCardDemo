@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     let scrollViewBtn: UIButton = {
         let button = UIButton()
-        button.setTitle("스크롤뷰", for: .normal)
+        button.setTitle("스크롤타입변경 예정", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         button.addTarget(self, action: #selector(moveToScroll), for: .touchUpInside)
