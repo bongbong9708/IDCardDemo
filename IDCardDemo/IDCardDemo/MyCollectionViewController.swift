@@ -141,16 +141,26 @@ extension MyCollectionViewController: UICollectionViewDataSource, UICollectionVi
             return cell
         } else if indexPath.item == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "qrcodeCell", for: indexPath) as! QRCodeCollectionViewCell
+
+            // QR코드부분
+            let data = "https://www.naver.com".data(using: String.Encoding.ascii)
+    
+            let filter = CIFilter(name: "CIQRCodeGenerator")
+            filter?.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 5, y: 5)
+    
+            if let output = filter?.outputImage?.transformed(by: transform) {
+                cell.QRImage.image = UIImage(ciImage: output)
+            }
             
-            cell.QRImage.image = UIImage(named: "QR코드")
+            
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "attendanceCell", for: indexPath) as! AttendanceCollectionViewCell
-
-            cell.titleLabel.text = "나의 근무시간 관리"
             
-            // present 메서드를 사용하기 위해 속성 설정
+            // alert을 사용하기 위해 present 메서드를 사용하기 위해 속성 설정
             cell.viewController = self
+            
             
             return cell
         }

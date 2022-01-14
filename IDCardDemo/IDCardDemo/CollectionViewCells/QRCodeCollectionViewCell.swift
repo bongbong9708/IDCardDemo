@@ -75,13 +75,14 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
     // 우선 이미지로 해놓고 다른 작업 후 진행예정
     let QRImage: UIImageView = {
         let img = UIImageView()
+        img.image = UIImage(named: "QR코드")
         
 //        let data = "https://www.naver.com".data(using: String.Encoding.ascii)
-//        
+//
 //        let filter = CIFilter(name: "CIQRCodeGenerator")
 //        filter?.setValue(data, forKey: "inputMessage")
 //        let transform = CGAffineTransform(scaleX: 5, y: 5)
-//        
+//
 //        if let output = filter?.outputImage?.transformed(by: transform) {
 //            img.image = UIImage(ciImage: output)
 //        }
@@ -281,12 +282,12 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         }
         
         // 숨겨진 재발급 버튼
-        hiddenQRView.addSubview(hiddenBtn)
+        contentView.addSubview(hiddenBtn)
         
         hiddenBtn.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(32)
-            make.leading.equalToSuperview().offset(46)
-            make.trailing.equalToSuperview().offset(-46)
+            make.top.equalToSuperview().offset(160)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(30)
         }
         
         // 숨겨진 재발급 텍스트
