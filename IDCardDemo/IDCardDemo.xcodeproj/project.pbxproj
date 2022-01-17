@@ -11,7 +11,7 @@
 		8800C944278D03B5002D0D44 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C943278D03B5002D0D44 /* MyCollectionViewController.swift */; };
 		8800C948278D1E18002D0D44 /* QRCodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C947278D1E18002D0D44 /* QRCodeCollectionViewCell.swift */; };
 		8800C94A278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C949278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift */; };
-		8800C954278D4B5E002D0D44 /* MyScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800C953278D4B5E002D0D44 /* MyScrollViewController.swift */; };
+		8805C93D2794F10600F4BFD9 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8805C93C2794F10600F4BFD9 /* QRCode.swift */; };
 		88491758278BF55300777E1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88491757278BF55300777E1A /* AppDelegate.swift */; };
 		8849175A278BF55300777E1A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88491759278BF55300777E1A /* SceneDelegate.swift */; };
 		8849175C278BF55300777E1A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8849175B278BF55300777E1A /* ViewController.swift */; };
@@ -44,7 +44,7 @@
 		8800C943278D03B5002D0D44 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
 		8800C947278D1E18002D0D44 /* QRCodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeCollectionViewCell.swift; sourceTree = "<group>"; };
 		8800C949278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCollectionViewCell.swift; sourceTree = "<group>"; };
-		8800C953278D4B5E002D0D44 /* MyScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScrollViewController.swift; sourceTree = "<group>"; };
+		8805C93C2794F10600F4BFD9 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		88491754278BF55300777E1A /* IDCardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDCardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88491757278BF55300777E1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88491759278BF55300777E1A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,8 +123,8 @@
 				88491759278BF55300777E1A /* SceneDelegate.swift */,
 				8849175B278BF55300777E1A /* ViewController.swift */,
 				8800C943278D03B5002D0D44 /* MyCollectionViewController.swift */,
-				8800C953278D4B5E002D0D44 /* MyScrollViewController.swift */,
 				8800C94E278D1EE3002D0D44 /* CollectionViewCells */,
+				8805C93C2794F10600F4BFD9 /* QRCode.swift */,
 				88491760278BF55500777E1A /* Assets.xcassets */,
 				88491762278BF55500777E1A /* LaunchScreen.storyboard */,
 				88491765278BF55500777E1A /* Info.plist */,
@@ -289,7 +289,7 @@
 				8800C944278D03B5002D0D44 /* MyCollectionViewController.swift in Sources */,
 				88CAB3EF278E52A800671BA0 /* ProfileCollectionViewCell.swift in Sources */,
 				8800C94A278D1E4E002D0D44 /* AttendanceCollectionViewCell.swift in Sources */,
-				8800C954278D4B5E002D0D44 /* MyScrollViewController.swift in Sources */,
+				8805C93D2794F10600F4BFD9 /* QRCode.swift in Sources */,
 				8849175C278BF55300777E1A /* ViewController.swift in Sources */,
 				88491758278BF55300777E1A /* AppDelegate.swift in Sources */,
 				8849175A278BF55300777E1A /* SceneDelegate.swift in Sources */,
@@ -463,7 +463,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9GQRR52DYJ;
+				DEVELOPMENT_TEAM = BR6U9G47ZR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IDCardDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -491,7 +491,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9GQRR52DYJ;
+				DEVELOPMENT_TEAM = BR6U9G47ZR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IDCardDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -10,6 +10,7 @@ import UIKit
 class MyCollectionViewController: UIViewController {
     
     // MARK: - 뷰 생성
+    // 컬렉션 뷰 이용
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -20,19 +21,18 @@ class MyCollectionViewController: UIViewController {
         return view
     }()
     
+    // 페이지 컨트롤
     let pageControl: UIPageControl = {
         let page = UIPageControl()
         page.numberOfPages = 3
         page.currentPage = 0
-        
         page.pageIndicatorTintColor = UIColor(displayP3Red: 193/255, green: 200/255, blue: 214/255, alpha: 1)
         page.currentPageIndicatorTintColor = UIColor(displayP3Red: 96/255, green: 127/255, blue: 255/255, alpha: 1)
-        
         page.addTarget(self, action: #selector(movePage), for: .valueChanged)
-        
         return page
     }()
     
+    // 나가기 버튼
     let exitBtn: UIButton = {
         let button = UIButton()
         button.setTitle("X", for: .normal)
@@ -61,21 +61,16 @@ class MyCollectionViewController: UIViewController {
         configureCollectionView()
         configureExitBtn()
         configurePageControll()
-    
-//        DispatchQueue.main.async {
-//            self.collectionView.scrollToItem(at: IndexPath(row: 2, section: 0), at: .right, animated: true)
-//        }
     }
         
     
     // MARK: - viewWillAppear
-    // 현재는 QR코드 사진 데이터를 넣어서 무리없이 2번째 화면으로 나타나는데 QR코드를 생성하게되면 생성 시간 때문인지 딜레이되는 시간이 있어서 1번째 화면 이후 이동을 하게됍니다.
+    // QR코드 사진 데이터를 넣어서 무리없이 2번째 화면으로 나타나는데 QR코드를 생성하게되면 생성 시간 때문인지 딜레이되는 시간이 있어서 1번째 화면 이후 이동을 하게 됩니다.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
             self.collectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .top, animated: false)
         }
-            
     }
     
     // MARK: - 서브뷰 추가 및 레이아웃 설정
@@ -111,13 +106,14 @@ class MyCollectionViewController: UIViewController {
     
     
     // MARK: - objc 함수 설정
+    // modal 나가기 버튼
     @objc func moveToMain() {
         self.dismiss(animated: true, completion: nil)
     }
     
+    // 페이지 컨트롤을 눌렀을 때 페이지로 이동
     @objc func movePage() {
         let indexPath = IndexPath(item: pageControl.currentPage, section: 0)
-        
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 
@@ -134,6 +130,7 @@ extension MyCollectionViewController: UICollectionViewDataSource, UICollectionVi
         if indexPath.item == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCollectionViewCell
 
+            // 데이터 받아와서 넣어줄 부분
             cell.profileImage.image = UIImage(named: "이상봉")
             cell.teamLabel.text = "더존비즈온 / 모바일Cell팀"
             cell.nameLabel.text = "이상봉"
@@ -141,18 +138,6 @@ extension MyCollectionViewController: UICollectionViewDataSource, UICollectionVi
             return cell
         } else if indexPath.item == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "qrcodeCell", for: indexPath) as! QRCodeCollectionViewCell
-
-            // QR코드부분
-            let data = "https://www.naver.com".data(using: String.Encoding.ascii)
-    
-            let filter = CIFilter(name: "CIQRCodeGenerator")
-            filter?.setValue(data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 5, y: 5)
-    
-            if let output = filter?.outputImage?.transformed(by: transform) {
-                cell.QRImage.image = UIImage(ciImage: output)
-            }
-            
             
             return cell
         } else {
@@ -161,26 +146,8 @@ extension MyCollectionViewController: UICollectionViewDataSource, UICollectionVi
             // alert을 사용하기 위해 present 메서드를 사용하기 위해 속성 설정
             cell.viewController = self
             
-            
             return cell
         }
-    }
-    
-//    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        let indexPath: IndexPath = IndexPath(row: 1, section: 0)
-//        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-//    }
-//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        let indexPath: IndexPath = IndexPath(row: 1, section: 0)
-//        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
-//    }
-}
-
-extension MyCollectionViewController: UICollectionViewDataSourcePrefetching {
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-                let indexPath: IndexPath = IndexPath(row: 1, section: 0)
-                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        
     }
 }
 

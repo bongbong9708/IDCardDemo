@@ -75,18 +75,6 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
     // 우선 이미지로 해놓고 다른 작업 후 진행예정
     let QRImage: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "QR코드")
-        
-//        let data = "https://www.naver.com".data(using: String.Encoding.ascii)
-//
-//        let filter = CIFilter(name: "CIQRCodeGenerator")
-//        filter?.setValue(data, forKey: "inputMessage")
-//        let transform = CGAffineTransform(scaleX: 5, y: 5)
-//
-//        if let output = filter?.outputImage?.transformed(by: transform) {
-//            img.image = UIImage(ciImage: output)
-//        }
-        
         return img
     }()
     
@@ -133,8 +121,10 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
     
     let hiddenBtn: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .blue
+        button.backgroundColor = UIColor(displayP3Red: 77/255, green: 124/255, blue: 254/255, alpha: 1)
         button.isHidden = true
+        button.layer.cornerRadius = 20
+        button.setImage(UIImage(named: "icReflashWrMNone"), for: .normal)
         button.addTarget(self, action: #selector(timerRestart), for: .touchUpInside)
         return button
     }()
@@ -285,9 +275,9 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(hiddenBtn)
         
         hiddenBtn.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(160)
+            make.top.equalTo(QRImage.snp.top).offset(32)
             make.centerX.equalToSuperview()
-            make.width.height.equalTo(30)
+            make.width.height.equalTo(40)
         }
         
         // 숨겨진 재발급 텍스트
@@ -332,11 +322,13 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         }
         
         // 타이머 사용값 초기화
-        timerNum = 2
-        totalTimerNum = timerNum * 3
+        timerNum = 15
+        totalTimerNum = timerNum * 3 + 2
         
         // 1초 간격 타이머 시작
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
+        
+        QRCode().generateQRCode(img: QRImage)
     }
     
     @objc func timerCallback() {
@@ -344,12 +336,14 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         self.remainTime.text = "\(timerNum)초"
         progressView.setProgress(Float(timerNum), animated: true)
         
-        
-        
         // timerNum이 0이면(15초 경과) 타이머 종료
         if (timerNum == 0) {
-            timerNum = 2
-
+            // 다시 타이머를 15초로 + progressView 돌아가는 시간 1초
+            timerNum = 15
+            
+            // 15초 마다 발급
+            QRCode().generateQRCode(img: QRImage)
+            
             if totalTimerNum == 0 {
                 timer?.invalidate()
                 

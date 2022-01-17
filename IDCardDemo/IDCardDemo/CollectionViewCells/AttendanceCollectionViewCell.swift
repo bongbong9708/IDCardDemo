@@ -15,8 +15,6 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
     // MARK: - 초기화
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-//        timeSetting()
         
         configureContentView()
 
@@ -25,6 +23,8 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         timeRecordSubViews()
         
         configureContentSubView()
+        
+        timeSetting()
     }
     
     required init?(coder: NSCoder) {
@@ -32,7 +32,6 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - View 생성
-    
     let baseView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(displayP3Red: 237/255, green: 241/255, blue: 247/255, alpha: 1)
@@ -319,7 +318,6 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workLabel.snp.makeConstraints { make in
             make.top.equalTo(workTimeLabel.snp.bottom).offset(6)
-//            make.leading.equalTo(midlineView.snp.trailing).offset(37)
             make.width.equalTo(80)
             make.trailing.equalToSuperview().offset(-38)
             make.bottom.equalToSuperview().offset(-28)
@@ -369,36 +367,51 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - 시간설정
-//    func timeSetting() {
-//        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(timerProc), userInfo: nil, repeats: true)
-//    }
+    func timeSetting() {
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timeReset), userInfo: nil, repeats: true)
+    }
+    
+    @objc func timeReset() {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        let time = formatter.string(from: date)
+    
+        // 23시 59분 59초가 되면 데이터 삭제
+        /*
+         내일 할일
+         날짜가 지나면 데이터 삭제되게 설정
+         레이아웃 설정
+         */
+        if time == "23:59:59" {
+            UserDefaults.standard.removeObject(forKey: "workingDetailTime")
+            UserDefaults.standard.removeObject(forKey: "workingTime")
+            UserDefaults.standard.removeObject(forKey: "workDetailTime")
+            UserDefaults.standard.removeObject(forKey: "workTime")
+        }
+    }
 
     
     // MARK: - objc 버튼 함수
-//    @objc func timerProc() {
-//        let date = Date()
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "HH:mm:ss"
-//        let time = formatter.string(from: date)
-//        timeLabel.text = time
-//    }
     
     @objc func workingAlert() {
         let workingAlert = UIAlertController(title: "알림", message: "출근시간을 등록하시겠습니까?", preferredStyle: .alert)
         
         let cancelBtn = UIAlertAction(title: "취소", style: .cancel) { _ in
-            
-            self.timeLabel.text = UserDefaults.standard.string(forKey: "workingDetailTime")
+            // 취소 버튼을 눌렀을 때 값이 있으면 값을 표시 없으면 00:00:00 호출
+            if UserDefaults.standard.string(forKey: "workingDetailTime") != nil {
+                self.timeLabel.text = UserDefaults.standard.string(forKey: "workingDetailTime")
+            } else {
+                self.timeLabel.text = "00:00:00"
+            }
         }
+        
         let okeyBtn = UIAlertAction(title: "확인", style: .default) { _ in
-            // 시간을 불러옴
-            let workingDetailDate = Date()
+            let date = Date()
+            // 시간을 불러옴(시간:분:초)
             let workingDetialFormatter = DateFormatter()
             workingDetialFormatter.dateFormat = "HH:mm:ss"
-            let workingDetailTime = workingDetialFormatter.string(from: workingDetailDate)
-            
-            // 테스트용 유저디폴트 삭제
-//            UserDefaults.standard.removeObject(forKey: "workingDetailTime")
+            let workingDetailTime = workingDetialFormatter.string(from: date)
             
             // 현재시간 등록
             if UserDefaults.standard.string(forKey: "workingDetailTime") == nil {
@@ -409,17 +422,13 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
             }
             
             // 시간을 불러옴(시간:분)
-            let date = Date()
-            let formatter = DateFormatter()
-            formatter.dateFormat = "HH:mm"
-            let time = formatter.string(from: date)
+            let workingFormatter = DateFormatter()
+            workingFormatter.dateFormat = "HH:mm"
+            let workingTime = workingFormatter.string(from: date)
             
-            // 테스트용 유저디폴트 삭제
-//            UserDefaults.standard.removeObject(forKey: "workingTime")
-
             // 출근시간등록
             if UserDefaults.standard.string(forKey: "workingTime") == nil {
-                UserDefaults.standard.set(time, forKey: "workingTime")
+                UserDefaults.standard.set(workingTime, forKey: "workingTime")
                 self.workingLabel.text = UserDefaults.standard.string(forKey: "workingTime")
                 self.workingLabel.textColor = UIColor(displayP3Red: 17/255, green: 17/255, blue: 17/255, alpha: 1)
             }
@@ -438,48 +447,53 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         let workingAlert = UIAlertController(title: "알림", message: "퇴근시간을 등록하시겠습니까?", preferredStyle: .alert)
         
         let cancelBtn = UIAlertAction(title: "취소", style: .cancel) { _ in
-            
-            self.timeLabel.text = UserDefaults.standard.string(forKey: "workDetailTime")
+            // 취소 버튼을 눌렀을 때 값이 있으면 값을 표시 없으면 00:00:00 호출
+            if UserDefaults.standard.string(forKey: "workDetailTime") != nil {
+                self.timeLabel.text = UserDefaults.standard.string(forKey: "workDetailTime")
+            } else {
+                self.timeLabel.text = "00:00:00"
+            }
         }
         // 확인 버튼 누르면 시간이 등록되게
         let okeyBtn = UIAlertAction(title: "확인", style: .default) { _ in
-            // 시간을 불러옴
-            let workDetailDate = Date()
+            let date = Date()
+            // 시간을 불러옴(시간:분:초)
             let workDetialFormatter = DateFormatter()
             workDetialFormatter.dateFormat = "HH:mm:ss"
-            let workDetailTime = workDetialFormatter.string(from: workDetailDate)
-            
-//             테스트용 유저디폴트 삭제
-//            UserDefaults.standard.removeObject(forKey: "workDetailTime")
+            let workDetailTime = workDetialFormatter.string(from: date)
 
             // 퇴근 현재시간
-            if UserDefaults.standard.string(forKey: "workDetailTime") == nil {
-                UserDefaults.standard.set(workDetailTime, forKey: "workDetailTime")
-                self.timeLabel.text = UserDefaults.standard.string(forKey: "workDetailTime")
-            } else {
+            if UserDefaults.standard.string(forKey: "workingDetailTime") == nil {
                 UserDefaults.standard.removeObject(forKey: "workDetailTime")
-                UserDefaults.standard.set(workDetailTime, forKey: "workDetailTime")
-                self.timeLabel.text = UserDefaults.standard.string(forKey: "workDetailTime")
+            } else {
+                if UserDefaults.standard.string(forKey: "workDetailTime") == nil {
+                    UserDefaults.standard.set(workDetailTime, forKey: "workDetailTime")
+                    self.timeLabel.text = UserDefaults.standard.string(forKey: "workDetailTime")
+                } else {
+                    UserDefaults.standard.removeObject(forKey: "workDetailTime")
+                    UserDefaults.standard.set(workDetailTime, forKey: "workDetailTime")
+                    self.timeLabel.text = UserDefaults.standard.string(forKey: "workDetailTime")
+                }
             }
             
             // 시간을 불러옴(시간:분)
-            let workDate = Date()
             let workFormatter = DateFormatter()
             workFormatter.dateFormat = "HH:mm"
-            let workTime = workFormatter.string(from: workDate)
-            
-             // 테스트용 유저디폴트 삭제
-//            UserDefaults.standard.removeObject(forKey: "workTime")
+            let workTime = workFormatter.string(from: date)
 
             // 퇴근시간 등록
-            if UserDefaults.standard.string(forKey: "workTime") == nil {
-                UserDefaults.standard.set(workTime, forKey: "workTime")
-                self.workLabel.text = UserDefaults.standard.string(forKey: "workTime")
-                self.workLabel.textColor = UIColor(displayP3Red: 17/255, green: 17/255, blue: 17/255, alpha: 1)
-            } else {
+            if UserDefaults.standard.string(forKey: "workingTime") == nil {
                 UserDefaults.standard.removeObject(forKey: "workTime")
-                UserDefaults.standard.set(workTime, forKey: "workTime")
-                self.workLabel.text = UserDefaults.standard.string(forKey: "workTime")
+            } else {
+                if UserDefaults.standard.string(forKey: "workTime") == nil {
+                    UserDefaults.standard.set(workTime, forKey: "workTime")
+                    self.workLabel.text = UserDefaults.standard.string(forKey: "workTime")
+                    self.workLabel.textColor = UIColor(displayP3Red: 17/255, green: 17/255, blue: 17/255, alpha: 1)
+                } else {
+                    UserDefaults.standard.removeObject(forKey: "workTime")
+                    UserDefaults.standard.set(workTime, forKey: "workTime")
+                    self.workLabel.text = UserDefaults.standard.string(forKey: "workTime")
+                }
             }
         }
         
