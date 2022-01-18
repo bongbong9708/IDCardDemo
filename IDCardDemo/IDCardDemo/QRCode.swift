@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import CoreImage.CIFilterBuiltins
 
 class QRCode {
+    
+    let context = CIContext()
+    let filter = CIFilter.qrCodeGenerator()
     
     // QR코드 생성
     func generateQRCode(img: UIImageView) {
@@ -49,13 +53,19 @@ class QRCode {
         let base64Data = getMakeQRValue("bongbong9708@douzone.com", personalDic).data(using: .utf8)
         
         // QR코드로 변환
-        let filter = CIFilter(name: "CIQRCodeGenerator")
-        filter?.setValue(base64Data, forKey: "inputMessage")
+//        let filter = CIFilter(name: "CIQRCodeGenerator")
+        filter.setValue(base64Data, forKey: "inputMessage")
 
         let transform = CGAffineTransform(scaleX: 5, y: 5)
 
-        if let output = filter?.outputImage?.transformed(by: transform) {
-            img.image = UIImage(ciImage: output)
+//        if let output = filter.outputImage?.transformed(by: transform) {
+//            img.image = UIImage(ciImage: output)
+//        }
+        
+        if let qrCodeImage = filter.outputImage?.transformed(by: transform) {
+            if let qrCodeCGImage = context.createCGImage(qrCodeImage, from: qrCodeImage.extent) {
+                img.image = UIImage(cgImage: qrCodeCGImage)
+            }
         }
     }
     

@@ -32,11 +32,18 @@ class MyCollectionViewController: UIViewController {
         return page
     }()
     
+    // 나가기 버튼 레이아웃을 잡기위해 empty뷰 생성
+    let emptyView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     // 나가기 버튼
     let exitBtn: UIButton = {
         let button = UIButton()
-        button.setTitle("X", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setImage(UIImage(systemName: "xmark")?.withTintColor(.black), for: .normal)
+        button.tintColor = .black
         button.backgroundColor = .white
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         button.addTarget(self, action: #selector(moveToMain), for: .touchUpInside)
@@ -78,20 +85,10 @@ class MyCollectionViewController: UIViewController {
         view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(172 * view.frame.height / 760)
+            make.centerY.equalToSuperview().offset(-10)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.height.equalTo(406)
-        }
-    }
-    
-    func configureExitBtn() {
-        view.addSubview(exitBtn)
-        
-        exitBtn.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.height.width.equalTo(52)
-            make.top.equalTo(collectionView.snp.bottom).offset(106)
         }
     }
     
@@ -99,8 +96,29 @@ class MyCollectionViewController: UIViewController {
         view.addSubview(pageControl)
         
         pageControl.snp.makeConstraints { make in
-            make.top.equalTo(collectionView.snp.bottom).offset(24)
+            make.top.equalTo(collectionView.snp.bottom).offset(24 * view.frame.height / 760)
             make.centerX.equalToSuperview()
+            make.height.equalTo(6)
+        }
+    }
+    
+    func configureEmptyView() {
+        view.addSubview(emptyView)
+        
+        emptyView.snp.makeConstraints { make in
+            make.top.equalTo(pageControl.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaInsets.bottom)
+        }
+    }
+    
+    func configureExitBtn() {
+        emptyView.addSubview(exitBtn)
+        
+        exitBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.height.width.equalTo(52)
         }
     }
     

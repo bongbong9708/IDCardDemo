@@ -339,7 +339,8 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         // timerNum이 0이면(15초 경과) 타이머 종료
         if (timerNum == 0) {
             // 다시 타이머를 15초로 + progressView 돌아가는 시간 1초
-            timerNum = 15
+            // totalTimerNum이 15*3+2 = 47 이여야함 그래서 16초 설정 -> 15초 설정시 무한 루프..
+            timerNum = 16
             
             // 15초 마다 발급
             QRCode().generateQRCode(img: QRImage)

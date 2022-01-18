@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 class AttendanceCollectionViewCell: UICollectionViewCell {
     
@@ -24,7 +25,7 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         configureContentSubView()
         
-        timeSetting()
+        daySetting()
     }
     
     required init?(coder: NSCoder) {
@@ -366,24 +367,14 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    // MARK: - 시간설정
-    func timeSetting() {
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timeReset), userInfo: nil, repeats: true)
-    }
     
-    @objc func timeReset() {
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
-        let time = formatter.string(from: date)
-    
-        // 23시 59분 59초가 되면 데이터 삭제
-        /*
-         내일 할일
-         날짜가 지나면 데이터 삭제되게 설정
-         레이아웃 설정
-         */
-        if time == "23:59:59" {
+    // MARK: - 날짜 설정
+    func daySetting() {
+        let todayDate = Date().day
+        UserDefaults.standard.set(todayDate, forKey: "todayDate")
+        
+        // 버튼을 눌렀을때 저장된 날짜와 현재의 날짜가 다르면 저장된 출퇴근 시간을 제거
+        if UserDefaults.standard.string(forKey: "nowDate") != UserDefaults.standard.string(forKey: "todayDate") {
             UserDefaults.standard.removeObject(forKey: "workingDetailTime")
             UserDefaults.standard.removeObject(forKey: "workingTime")
             UserDefaults.standard.removeObject(forKey: "workDetailTime")
@@ -434,6 +425,9 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
             }
             else {
                 self.workingLabel.text = UserDefaults.standard.string(forKey: "workingTime")
+                
+                // 출근시간이 있으면 토스트 띄우기
+                self.viewController?.view.makeToast("이미 출근시간이 등록되었습니다.", duration: 1, position: .bottom, title: nil, image: nil, style: .init(), completion: nil)
             }
         }
         
@@ -441,6 +435,11 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         workingAlert.addAction(okeyBtn)
         
         viewController?.present(workingAlert, animated: true, completion: nil)
+        
+        // 버튼을 누르는 날짜 저장
+        let nowDate = Date().day
+        UserDefaults.standard.set(nowDate, forKey: "nowDate")
+        
     }
     
     @objc func workAlert() {
