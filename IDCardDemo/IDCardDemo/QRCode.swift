@@ -41,7 +41,7 @@ class QRCode {
         let convertMinute = Int(minuteFormatter.string(from: nowDate)) ?? 0
         let convertSecond = Int(secondFormatter.string(from: nowDate)) ?? 0
         
-        let timeCheckSum = ((convertYear + convertMonth*3 + convertDay*5 + convertHour*7 + convertMinute*11 + convertSecond)%13)
+        let timeCheckSum = "\((convertYear + convertMonth*3 + convertDay*5 + convertHour*7 + convertMinute*11 + convertSecond)%13)"
         
         let personalDic = [
             "timeStamp": convertDate,
@@ -71,7 +71,7 @@ class QRCode {
     
     // 딕셔너리를 json 스트링 으로 변환
     func convertDictionaryToJsonString(dict: Dictionary<String, Any>) -> String {
-            let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions())
+        let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions())
         if let jsonString = NSString(data: jsonData!, encoding: String.Encoding.utf8.rawValue){
                 return "\(jsonString)"
             }
