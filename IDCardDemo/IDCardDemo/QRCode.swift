@@ -53,14 +53,9 @@ class QRCode {
         let base64Data = getMakeQRValue("bongbong9708@douzone.com", personalDic).data(using: .utf8)
         
         // QR코드로 변환
-//        let filter = CIFilter(name: "CIQRCodeGenerator")
         filter.setValue(base64Data, forKey: "inputMessage")
 
         let transform = CGAffineTransform(scaleX: 5, y: 5)
-
-//        if let output = filter.outputImage?.transformed(by: transform) {
-//            img.image = UIImage(ciImage: output)
-//        }
         
         if let qrCodeImage = filter.outputImage?.transformed(by: transform) {
             if let qrCodeCGImage = context.createCGImage(qrCodeImage, from: qrCodeImage.extent) {
@@ -68,7 +63,6 @@ class QRCode {
             }
         }
     }
-    
     // 딕셔너리를 json 스트링 으로 변환
     func convertDictionaryToJsonString(dict: Dictionary<String, Any>) -> String {
         let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions())

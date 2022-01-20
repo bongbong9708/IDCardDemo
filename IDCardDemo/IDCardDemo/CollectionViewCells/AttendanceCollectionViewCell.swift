@@ -58,6 +58,12 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    let dayView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     let todayLabel: UILabel = {
         let label = UILabel()
         label.text = "금일"
@@ -77,13 +83,13 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         // 날짜 설정
         let nowDate = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy.MM.dd(E)"
+        dateFormatter.dateFormat = "yyyy.MM.dd (E)"
         dateFormatter.locale = Locale(identifier:"ko_KR")
         let convertDate = dateFormatter.string(from: nowDate)
         
         label.text = "\(convertDate)"
         label.textColor = UIColor(r: 139, g: 139, b: 143, alpha: 1)
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 14)
 
         return label
@@ -147,7 +153,7 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
             label.text = UserDefaults.standard.string(forKey: "workingTime")
             label.textColor = UIColor(r: 17, g: 17, b: 17, alpha: 1)
         }
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 21)
         return label
     }()
@@ -161,7 +167,7 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
             label.text = UserDefaults.standard.string(forKey: "workTime")
             label.textColor = UIColor(r: 17, g: 17, b: 17, alpha: 1)
         }
-        label.textAlignment = .right
+        label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 21)
         return label
     }()
@@ -177,8 +183,13 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
     let workingTimeBtn: UIButton = {
         let button = UIButton()
         button.setTitle("출근", for: .normal)
-        button.setTitleColor(UIColor(r: 255, g: 255, b: 255, alpha: 1), for: .normal)
+        if UserDefaults.standard.string(forKey: "workingTime") == nil {
+            button.setTitleColor(UIColor(r: 255, g: 255, b: 255, alpha: 0.5), for: .normal)
+        } else {
+            button.setTitleColor(UIColor(r: 255, g: 255, b: 255, alpha: 1), for: .normal)
+        }
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.textAlignment = .center
         // 출퇴근 버튼 Alert 생성
         button.addTarget(self, action: #selector(workingAlert), for: .touchUpInside)
         return button
@@ -193,8 +204,13 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
     let workTimeBtn: UIButton = {
         let button = UIButton()
         button.setTitle("퇴근", for: .normal)
-        button.setTitleColor(UIColor(r: 255, g: 255, b: 255, alpha: 1) , for: .normal)
+        if UserDefaults.standard.string(forKey: "workTime") == nil {
+            button.setTitleColor(UIColor(r: 255, g: 255, b: 255, alpha: 0.5), for: .normal)
+        } else {
+            button.setTitleColor(UIColor(r: 255, g: 255, b: 255, alpha: 1), for: .normal)
+        }
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.textAlignment = .center
         // 출퇴근 버튼 Alert 생성
         button.addTarget(self, action: #selector(workAlert), for: .touchUpInside)
         return button
@@ -235,32 +251,41 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(1)
         }
         
+        // 데이뷰 = 금일 + 날짜
+        baseView.addSubview(dayView)
+        
+        dayView.snp.makeConstraints { make in
+            make.top.equalTo(lineView).offset(23)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(149)
+            make.height.equalTo(20)
+        }
         // 금일라벨
-        baseView.addSubview(todayLabel)
+        dayView.addSubview(todayLabel)
         
         todayLabel.snp.makeConstraints { make in
-            make.top.equalTo(lineView.snp.bottom).offset(25.6)
-            make.leading.equalToSuperview().offset(86)
+            make.top.equalToSuperview().offset(2.6)
+            make.leading.equalToSuperview().offset(10)
             make.height.equalTo(16)
+            make.width.equalTo(26)
         }
         
         // 날짜라벨
-        baseView.addSubview(dateLabel)
+        dayView.addSubview(dateLabel)
         
         dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(lineView.snp.bottom).offset(23)
+            make.top.equalToSuperview()
             make.leading.equalTo(todayLabel.snp.trailing).offset(7)
-            make.trailing.equalToSuperview().offset(-85)
-            make.height.equalTo(20)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         
         // 시간 라벨
         baseView.addSubview(timeLabel)
         
         timeLabel.snp.makeConstraints { make in
-            make.top.equalTo(dateLabel.snp.bottom).offset(1)
+            make.top.equalTo(dayView.snp.bottom).offset(1)
             make.centerX.equalToSuperview()
-//            make.width.equalTo(142)
             make.height.equalTo(50)
         }
     }
@@ -281,8 +306,8 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         midlineView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(28)
-            make.leading.equalToSuperview().offset(134)
-            make.trailing.equalToSuperview().offset(-133)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(1)
             make.bottom.equalToSuperview().offset(-28)
         }
         
@@ -291,8 +316,8 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workingTimeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(27)
-            make.leading.equalToSuperview().offset(42)
-            make.trailing.equalTo(midlineView.snp.leading).offset(-42)
+            make.leading.equalToSuperview()
+            make.trailing.equalTo(midlineView.snp.leading)
         }
         
         // 퇴근 시간
@@ -300,8 +325,8 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workTimeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(27)
-            make.leading.equalTo(midlineView.snp.trailing).offset(41)
-            make.trailing.equalToSuperview().offset(-42)
+            make.leading.equalTo(midlineView.snp.trailing)
+            make.trailing.equalToSuperview()
         }
         
         // 출근 시간 - 진짜시간
@@ -309,9 +334,9 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workingLabel.snp.makeConstraints { make in
             make.top.equalTo(workingTimeLabel.snp.bottom).offset(6)
-            make.leading.equalToSuperview().offset(38)
-            make.width.equalTo(80)
-            make.bottom.equalToSuperview().offset(-28)
+            make.leading.equalToSuperview()
+            make.trailing.equalTo(midlineView.snp.leading)
+            make.height.equalTo(31)
         }
         
         // 퇴근 시간 - 진짜시간
@@ -319,9 +344,9 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workLabel.snp.makeConstraints { make in
             make.top.equalTo(workTimeLabel.snp.bottom).offset(6)
-            make.width.equalTo(80)
-            make.trailing.equalToSuperview().offset(-38)
-            make.bottom.equalToSuperview().offset(-28)
+            make.leading.equalTo(midlineView.snp.trailing)
+            make.trailing.equalToSuperview()
+            make.height.equalTo(31)
         }
     }
     
@@ -331,9 +356,9 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(worktimeBtnView)
         
         worktimeBtnView.snp.makeConstraints { make in
-            make.top.equalTo(timeRecordView.snp.bottom).offset(24)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(52)
             make.bottom.equalToSuperview().offset(-54)
         }
         
@@ -342,7 +367,7 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workingTimeBtn.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
-            make.leading.equalToSuperview().offset(54)
+            make.leading.equalToSuperview()
             make.bottom.equalToSuperview().offset(-16)
         }
         
@@ -351,7 +376,8 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workMidLineView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(14)
-            make.leading.equalTo(workingTimeBtn.snp.trailing).offset(54)
+            make.centerX.equalToSuperview()
+            make.leading.equalTo(workingTimeBtn.snp.trailing)
             make.width.equalTo(1)
             make.bottom.equalToSuperview().offset(-14)
         }
@@ -361,8 +387,8 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workTimeBtn.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
-            make.leading.equalTo(workMidLineView.snp.trailing).offset(55)
-            make.width.equalTo(26)
+            make.leading.equalTo(workMidLineView.snp.trailing)
+            make.trailing.equalToSuperview()
             make.bottom.equalToSuperview().offset(-16)
         }
     }
@@ -395,30 +421,41 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(1)
         }
         
+        // 데이뷰 = 금일 + 날짜
+        baseView.addSubview(dayView)
+        
+        dayView.snp.makeConstraints { make in
+            make.top.equalTo(lineView).offset(32)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(149)
+            make.height.equalTo(20)
+        }
         // 금일라벨
-        baseView.addSubview(todayLabel)
+        dayView.addSubview(todayLabel)
         
         todayLabel.snp.makeConstraints { make in
-            make.top.equalTo(lineView.snp.bottom).offset(34.6)
-            make.leading.equalToSuperview().offset(116)
+            make.top.equalToSuperview().offset(2.6)
+            make.leading.equalToSuperview().offset(10)
             make.height.equalTo(16)
+            make.width.equalTo(26)
         }
         
         // 날짜라벨
-        baseView.addSubview(dateLabel)
+        dayView.addSubview(dateLabel)
         
         dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(lineView.snp.bottom).offset(32)
+            make.top.equalToSuperview()
             make.leading.equalTo(todayLabel.snp.trailing).offset(7)
-            make.trailing.equalToSuperview().offset(-115)
-            make.height.equalTo(20)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
+        
         
         // 시간 라벨
         baseView.addSubview(timeLabel)
         
         timeLabel.snp.makeConstraints { make in
-            make.top.equalTo(dateLabel.snp.bottom).offset(1)
+            make.top.equalTo(dayView.snp.bottom).offset(1)
             make.centerX.equalToSuperview()
             make.height.equalTo(50)
         }
@@ -440,8 +477,8 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         midlineView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(36)
-            make.leading.equalToSuperview().offset(164)
-            make.trailing.equalToSuperview().offset(-163)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(1)
             make.bottom.equalToSuperview().offset(-36)
         }
         
@@ -450,8 +487,8 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workingTimeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(35)
-            make.leading.equalToSuperview().offset(57)
-            make.trailing.equalTo(midlineView.snp.leading).offset(-57)
+            make.leading.equalToSuperview()
+            make.trailing.equalTo(midlineView.snp.leading)
         }
         
         // 퇴근 시간
@@ -459,8 +496,8 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workTimeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(35)
-            make.leading.equalTo(midlineView.snp.trailing).offset(56)
-            make.trailing.equalToSuperview().offset(-57)
+            make.leading.equalTo(midlineView.snp.trailing)
+            make.trailing.equalToSuperview()
         }
         
         // 출근 시간 - 진짜시간
@@ -468,9 +505,9 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workingLabel.snp.makeConstraints { make in
             make.top.equalTo(workingTimeLabel.snp.bottom).offset(6)
-            make.leading.equalToSuperview().offset(56)
-            make.width.equalTo(80)
-            make.bottom.equalToSuperview().offset(-36)
+            make.leading.equalToSuperview()
+            make.trailing.equalTo(midlineView.snp.leading)
+            make.height.equalTo(31)
         }
         
         // 퇴근 시간 - 진짜시간
@@ -478,9 +515,9 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workLabel.snp.makeConstraints { make in
             make.top.equalTo(workTimeLabel.snp.bottom).offset(6)
-            make.width.equalTo(80)
-            make.trailing.equalToSuperview().offset(-53)
-            make.bottom.equalToSuperview().offset(-36)
+            make.leading.equalTo(midlineView.snp.trailing)
+            make.trailing.equalToSuperview()
+            make.height.equalTo(31)
         }
     }
     
@@ -490,9 +527,9 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(worktimeBtnView)
         
         worktimeBtnView.snp.makeConstraints { make in
-            make.top.equalTo(timeRecordView.snp.bottom).offset(24)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(54)
             make.bottom.equalToSuperview().offset(-83)
         }
         
@@ -501,7 +538,7 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workingTimeBtn.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
-            make.leading.equalToSuperview().offset(69)
+            make.leading.equalToSuperview()
             make.bottom.equalToSuperview().offset(-16)
         }
         
@@ -510,7 +547,8 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workMidLineView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(14)
-            make.leading.equalTo(workingTimeBtn.snp.trailing).offset(69)
+            make.centerX.equalToSuperview()
+            make.leading.equalTo(workingTimeBtn.snp.trailing)
             make.width.equalTo(1)
             make.bottom.equalToSuperview().offset(-14)
         }
@@ -520,8 +558,8 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
         
         workTimeBtn.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
-            make.leading.equalTo(workMidLineView.snp.trailing).offset(70)
-            make.width.equalTo(26)
+            make.leading.equalTo(workMidLineView.snp.trailing)
+            make.trailing.equalToSuperview()
             make.bottom.equalToSuperview().offset(-16)
         }
     }
@@ -538,6 +576,9 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
             UserDefaults.standard.removeObject(forKey: "workDetailTime")
             UserDefaults.standard.removeObject(forKey: "workTime")
         }
+    }
+    
+    func dataCheckBtn() {
     }
 
     
@@ -587,6 +628,9 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
                 // 출근시간이 있으면 토스트 띄우기
                 self.viewController?.view.makeToast("이미 출근시간이 등록되었습니다.", duration: 1, position: .bottom, title: nil, image: nil, style: .init(), completion: nil)
             }
+            
+            // 출근 버튼 누르면 버튼 알파값 변경
+            self.workingTimeBtn.setTitleColor(UIColor(r: 255, g: 255, b: 255, alpha: 1), for: .normal)
         }
         
         workingAlert.addAction(cancelBtn)
@@ -652,6 +696,9 @@ class AttendanceCollectionViewCell: UICollectionViewCell {
                     self.workLabel.text = UserDefaults.standard.string(forKey: "workTime")
                 }
             }
+            
+            // 퇴근 버튼 누르면 알파값 변경
+            self.workTimeBtn.setTitleColor(UIColor(r: 255, g: 255, b: 255, alpha: 1), for: .normal)
         }
         
         workingAlert.addAction(cancelBtn)

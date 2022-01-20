@@ -276,8 +276,8 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(progressView)
         
         progressView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(48)
-            make.trailing.equalToSuperview().offset(-48)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(204)
             make.height.equalTo(6)
             make.bottom.equalToSuperview().offset(-70)
         }
@@ -391,47 +391,51 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
             make.edges.equalToSuperview().inset(8)
         }
         
+        // 클리어 뷰
+        contentView.addSubview(clearView)
         
-        // MARK: - 에러 1
-        // 뷰만들어서 수정
+        clearView.snp.makeConstraints { make in
+            make.top.equalTo(imageBaseView.snp.bottom).offset(40)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(19)
+            make.width.equalTo(100)
+        }
         
         // 알람 이미지
-        contentView.addSubview(clockImage)
+        clearView.addSubview(clockImage)
         
         clockImage.snp.makeConstraints { make in
-            make.top.equalTo(imageBaseView.snp.bottom).offset(41)
-            make.leading.equalToSuperview().offset(135)
-            make.width.height.equalTo(18)
+            make.top.equalToSuperview().offset(1)
+            make.leading.bottom.equalToSuperview()
+            make.width.equalTo(18)
         }
         
         // 남은 시간
-        contentView.addSubview(remainTimeLabel)
+        clearView.addSubview(remainTimeLabel)
         
         remainTimeLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageBaseView.snp.bottom).offset(40)
+            make.top.bottom.equalToSuperview()
             make.leading.equalTo(clockImage.snp.trailing).offset(2)
             make.width.equalTo(48)
-            make.height.equalTo(19)
         }
         
         // 남은시간 - 숫자
-        contentView.addSubview(remainTime)
+        clearView.addSubview(remainTime)
         
         remainTime.snp.makeConstraints { make in
-            make.top.equalTo(imageBaseView.snp.bottom).offset(40)
+            make.top.bottom.equalToSuperview()
             make.leading.equalTo(remainTimeLabel.snp.trailing).offset(4)
-            make.width.equalTo(30)
-            make.height.equalTo(19)
+            make.width.equalTo(28)
         }
         
         // 프로그레스뷰
         contentView.addSubview(progressView)
         
         progressView.snp.makeConstraints { make in
-            make.top.equalTo(remainTime.snp.bottom).offset(16)
-            make.leading.equalToSuperview().offset(48)
-            make.trailing.equalToSuperview().offset(-48)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(264)
             make.height.equalTo(6)
+            make.bottom.equalToSuperview().offset(-85)
         }
     }
     
@@ -460,31 +464,38 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(-32)
         }
+        // 숨겨진 시계 + 숨겨진 유효만료 라벨
+        contentView.addSubview(hiddenClearView)
+        
+        hiddenClearView.snp.makeConstraints { make in
+            make.top.equalTo(imageBaseView.snp.bottom).offset(40)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(168)
+            make.height.equalTo(19)
+        }
         
         // 숨겨진 시계
-        contentView.addSubview(hiddenClockImage)
+        hiddenClearView.addSubview(hiddenClockImage)
         
         hiddenClockImage.snp.makeConstraints { make in
-            make.top.equalTo(imageBaseView.snp.bottom).offset(41)
-            make.leading.equalToSuperview().offset(96)
+            make.top.equalToSuperview().offset(1)
+            make.leading.bottom.equalToSuperview()
             make.width.height.equalTo(18)
         }
         
         // 숨겨진 유효시간 만료라벨
-        contentView.addSubview(hiddenTimeLabel)
+        hiddenClearView.addSubview(hiddenTimeLabel)
         
         hiddenTimeLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageBaseView.snp.bottom).offset(40)
+            make.top.trailing.bottom.equalToSuperview()
             make.leading.equalTo(hiddenClockImage.snp.trailing).offset(2)
-            make.trailing.equalToSuperview().offset(-96)
-            make.height.equalTo(19)
         }
     }
     
     // MARK: - 타이머 세팅
     var timer: Timer?
-    var timerNum: Int = 0
-    var totalTimerNum: Int = 0
+    var timerNum: Double = 0
+    var totalTimerNum: Double = 0
     
     func startTimer() {
         // 기존에 타이머 동작중이면 중지 처리
@@ -493,30 +504,30 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         }
         
         // 타이머 사용값 초기화
-        timerNum = 15
-        totalTimerNum = timerNum * 3 + 2
+        timerNum = 15.0
+        totalTimerNum = timerNum * 3
         
         // 1초 간격 타이머 시작
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
         
         QRCode().generateQRCode(img: QRImage)
     }
     
     @objc func timerCallback() {
         // 15초 ~ 1초 까지 timeBtn의 타이틀 변경
-        self.remainTime.text = "\(timerNum)초"
-        progressView.setProgress(Float(timerNum), animated: true)
+        self.remainTime.text = "\(Int(timerNum))초"
+        progressView.setProgress(Float(0.067*(15.0-Double(timerNum))), animated: true)
         
         // timerNum이 0이면(15초 경과) 타이머 종료
-        if (timerNum == 0) {
+        if (timerNum <= 0) {
             // 다시 타이머를 15초로 + progressView 돌아가는 시간 1초
             // totalTimerNum이 15*3+2 = 47 이여야함 그래서 16초 설정 -> 15초 설정시 무한 루프..
-            timerNum = 16
+            timerNum = 15.0
             
             // 15초 마다 발급
             QRCode().generateQRCode(img: QRImage)
             
-            if totalTimerNum == 0 {
+            if totalTimerNum <= 0 {
                 timer?.invalidate()
                 
                 clockImage.isHidden = true
@@ -533,8 +544,8 @@ class QRCodeCollectionViewCell: UICollectionViewCell {
         }
         
         // 1초씩 감소시키기
-        timerNum -= 1
-        totalTimerNum -= 1
+        timerNum -= 0.01
+        totalTimerNum -= 0.01
     }
     
     @objc func timerRestart() {
