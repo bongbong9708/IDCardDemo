@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   lang_kr.plist
+   IDCardDemo
+
+   Created by 이상봉 on 2022/01/25.
+   Copyright (c) 2022 ___ORGANIZATIONNAME___. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+    <key>전자사원증</key>
+    <string>전자사원증</string>
+    <key>상기인은당사임직원임을증명합니다</key>
+    <string>상기인은 당사 임직원임을 증명합니다.</string>
+    <key>출퇴근체크QR</key>
+    <string>출퇴근 체크 QR</string>
+    <key>근태기에QR코드를인식해주세요</key>
+    <string>근태기에 QR코드를 인식해주세요.</string>
+    <key>재발급</key>
+    <string>재발급</string>
+    <key>남은시간</key>
+    <string>남은시간</string>
+    <key>초</key>
+    <string>초</string>
+    <key>유효시간이만료되었습니다</key>
+    <string>유효시간이 만료되었습니다.</string>
+    <key>나의근무시간관리</key>
+    <string>나의 근무시간 관리</string>
+    <key>금일</key>
+    <string>금일</string>
+    <key>미등록</key>
+    <string>미등록</string>
+    <key>출근시간을등록하시겠습니까</key>
+    <string>출근시간을 등록하시겠습니까?</string>
+    <key>퇴근시간을등록하시겠습니까</key>
+    <string>퇴근시간을 등록하시겠습니까?</string>
+    <key>이미출근시간이등록되었습니다</key>
+    <string>이미 출근시간이 등록되었습니다.</string>
+    <key>출근시간</key>
+    <string>출근시간</string>
+    <key>퇴근시간</key>
+    <string>퇴근시간</string>
+    <key>출근</key>
+    <string>출근</string>
+    <key>퇴근</key>
+    <string>퇴근</string>
+    <key>NOTICE</key>
+    <string>알림</string>
+    <key>CONFIRM</key>
+    <string>확인</string>
+    <key>CANCEL</key>
+    <string>취소</string>
+</dict>
+</plist>

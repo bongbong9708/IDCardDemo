@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   lang_en.plist
+   IDCardDemo
+
+   Created by 이상봉 on 2022/01/25.
+   Copyright (c) 2022 ___ORGANIZATIONNAME___. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+    <key>전자사원증</key>
+    <string>Electronic ID Card</string>
+    <key>상기인은당사임직원임을증명합니다</key>
+    <string>We certify that the above person is an employee of our company.</string>
+    <key>출퇴근체크QR</key>
+    <string>Commuting Check QR</string>
+    <key>근태기에QR코드를인식해주세요</key>
+    <string>Please scan the QR code on the attendance manager.</string>
+    <key>재발급</key>
+    <string> Reissuance</string>
+    <key>남은시간</key>
+    <string>Remaining time</string>
+    <key>초</key>
+    <string>sec</string>
+    <key>유효시간이만료되었습니다</key>
+    <string>The validity time has expired.</string>
+    <key>나의근무시간관리</key>
+    <string>Managing my working hours.</string>
+    <key>금일</key>
+    <string>Today</string>
+    <key>미등록</key>
+    <string>Unregistered.</string>
+    <key>출근시간을등록하시겠습니까</key>
+    <string>Do you want to register for work time?</string>
+    <key>퇴근시간을등록하시겠습니까</key>
+    <string>Do you want to register your time off work?</string>
+    <key>이미출근시간이등록되었습니다</key>
+    <string>The rush hour has already been registered.</string>
+    <key>출근시간</key>
+    <string>Time for coming</string>
+    <key>퇴근시간</key>
+    <string>Time for leaving</string>
+    <key>출근</key>
+    <string>Go to work</string>
+    <key>퇴근</key>
+    <string>Off work</string>
+    <key>NOTICE</key>
+    <string>Notification</string>
+    <key>CONFIRM</key>
+    <string>Check</string>
+    <key>CANCEL</key>
+    <string>Cancel</string>
+</dict>
+</plist>

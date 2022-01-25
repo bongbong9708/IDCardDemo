@@ -22,6 +22,10 @@
 		8849177B278BF55500777E1A /* IDCardDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8849177A278BF55500777E1A /* IDCardDemoUITestsLaunchTests.swift */; };
 		88758D8427964711000B3AC5 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 88758D8327964711000B3AC5 /* Toast */; };
 		88758D882796827D000B3AC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88758D872796827D000B3AC5 /* Extensions.swift */; };
+		88C0C6FE279FCA2A0091BE98 /* lang_kr.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88C0C6FD279FCA2A0091BE98 /* lang_kr.plist */; };
+		88C0C700279FCAAA0091BE98 /* lang_en.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88C0C6FF279FCAAA0091BE98 /* lang_en.plist */; };
+		88C0C702279FCADD0091BE98 /* lang_jp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88C0C701279FCADD0091BE98 /* lang_jp.plist */; };
+		88C0C704279FCB190091BE98 /* lang_cn.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88C0C703279FCB190091BE98 /* lang_cn.plist */; };
 		88CAB3EF278E52A800671BA0 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CAB3EE278E52A800671BA0 /* ProfileCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +64,10 @@
 		88491778278BF55500777E1A /* IDCardDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDCardDemoUITests.swift; sourceTree = "<group>"; };
 		8849177A278BF55500777E1A /* IDCardDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDCardDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		88758D872796827D000B3AC5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		88C0C6FD279FCA2A0091BE98 /* lang_kr.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = lang_kr.plist; sourceTree = "<group>"; };
+		88C0C6FF279FCAAA0091BE98 /* lang_en.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = lang_en.plist; sourceTree = "<group>"; };
+		88C0C701279FCADD0091BE98 /* lang_jp.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = lang_jp.plist; sourceTree = "<group>"; };
+		88C0C703279FCB190091BE98 /* lang_cn.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = lang_cn.plist; sourceTree = "<group>"; };
 		88CAB3EE278E52A800671BA0 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +141,7 @@
 				88491760278BF55500777E1A /* Assets.xcassets */,
 				88491762278BF55500777E1A /* LaunchScreen.storyboard */,
 				88491765278BF55500777E1A /* Info.plist */,
+				88C0C705279FCB3A0091BE98 /* Language */,
 			);
 			path = IDCardDemo;
 			sourceTree = "<group>";
@@ -152,6 +161,17 @@
 				8849177A278BF55500777E1A /* IDCardDemoUITestsLaunchTests.swift */,
 			);
 			path = IDCardDemoUITests;
+			sourceTree = "<group>";
+		};
+		88C0C705279FCB3A0091BE98 /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				88C0C6FD279FCA2A0091BE98 /* lang_kr.plist */,
+				88C0C6FF279FCAAA0091BE98 /* lang_en.plist */,
+				88C0C701279FCADD0091BE98 /* lang_jp.plist */,
+				88C0C703279FCB190091BE98 /* lang_cn.plist */,
+			);
+			path = Language;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,8 +286,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C0C6FE279FCA2A0091BE98 /* lang_kr.plist in Resources */,
+				88C0C704279FCB190091BE98 /* lang_cn.plist in Resources */,
 				88491764278BF55500777E1A /* LaunchScreen.storyboard in Resources */,
+				88C0C702279FCADD0091BE98 /* lang_jp.plist in Resources */,
 				88491761278BF55500777E1A /* Assets.xcassets in Resources */,
+				88C0C700279FCAAA0091BE98 /* lang_en.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
